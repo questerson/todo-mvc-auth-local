@@ -12,6 +12,18 @@ const TodoSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true
+  },
+  title: {
+    type: String,
+    require:false
+  },
+  image: {
+    type: String, 
+    required:false
+  },
+  searchFail: {
+    type: String, 
+    required:false
   }
 })
 

@@ -33,11 +33,26 @@ app.use(
   )
   
 // Passport middleware
+
 app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
-  
+
+//adding this function to store values for flash and any ejs page
+app.use(function(req, res, next){
+  res.locals.success_messages = req.flash('success_messages');
+  res.locals.error_messages = req.flash('error_messages');
+  next();
+});  
+// Custom flash middleware -- from Ethan Brown's book, 'Web Development with Node & Express'
+app.use(function(req, res, next){
+  // if there's a flash message in the session request, make it available in the response, then delete it
+  res.locals.sessionFlash = req.session.sessionFlash;
+  delete req.session.sessionFlash;
+  next();
+});
+
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
  

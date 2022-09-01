@@ -6,19 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 </head>
 <body>
     <h1>Todos</h1>
     <ul>
+        
     <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
+                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.title %></span>
+                <img src="<%=el.image%>" alt=""poster image" width="128" ><img>
+                <span class='del fa fa-circle-xmark'></span>
             </li>
     <% }) %>    
     </ul>
 
     <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+    
+<h2>
+    <div class="alert alert-danger"><%= messages.errors%></div>
+</h2>    
+
+
+  
 
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
